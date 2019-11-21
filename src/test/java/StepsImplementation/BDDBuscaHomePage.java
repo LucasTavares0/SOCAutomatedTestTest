@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 
+import Pages.SOC_PostDetailsPage;
 import Pages.SOC_ResultadosBuscaPage;
 import Pages.SOC_homePage;
 import Utilities.DriverFactory;
@@ -27,6 +28,7 @@ public class BDDBuscaHomePage {
 	DriverFactory factory = new DriverFactory();
 	SOC_homePage homepage;
 	SOC_ResultadosBuscaPage resultadospage;
+	SOC_PostDetailsPage postpage;
 	
 	@Given("^user is on the blog home page$")
 	public void user_is_on_the_blog_home_page(){
@@ -40,7 +42,7 @@ public class BDDBuscaHomePage {
 		
 		System.out.println("---- User enters a value that refers to an existent post");
 		
-		searchFilter = "Oportunidades";
+		searchFilter = "Tecnologia";
 		System.out.println("Valor inserido = " + searchFilter);
 		homepage.sendKeysBuscarTextBox(searchFilter);
 	}
@@ -87,6 +89,18 @@ public class BDDBuscaHomePage {
 	public void user_validates_that_post_refers_to_the_filter_used() {
 		
 		System.out.println("---- User validates that post refers to the filter used");
+		postpage = new SOC_PostDetailsPage(driver);
+		
+		String postTitleReceived = postpage.getPostTitle();
+		String articleContentReceived = postpage.getArticleContentText();
+		
+		System.out.println("Titulo do Artigo = "+ postTitleReceived);
+		//System.out.println("Conteudo do Artigo = "+ articleContentReceived);
+		
+		Assert.assertTrue("Titulo do artigo nao condiz com o titulo do post selecionado",
+							postTitleReceived.equalsIgnoreCase(firstArticleTitle));
+		Assert.assertTrue("Conteundo do artigo nao contem palavra filtro usada na pesquisa", 
+							articleContentReceived.toLowerCase().contains(searchFilter.toLowerCase()));
 	}
 	
 	@Then("^user receives erro message informing that no post refers to the filter used$")
