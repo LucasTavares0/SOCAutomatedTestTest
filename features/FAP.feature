@@ -1,6 +1,6 @@
 #Author: lucas.s_tavares@hotmail.com
 
-#SOC Blog Homepage URL <https://ww2.soc.com.br/fap/>
+#SOC FAP page URL <https://ww2.soc.com.br/fap/>
 
 Feature: Test the FAP calculator functionality
 
