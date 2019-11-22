@@ -43,20 +43,20 @@ public class BDDBuscaHomePage {
 		homepage = new SOC_homePage(driver);
 	}
 	
-	@When("^user enters a filter value that refers to an existent post$")
-	public void user_enters_a_filter_value_that_refers_to_an_existent_post() {
+	@When("^user enters a (.*) that refers to an existent post$")
+	public void user_enters_a_filter_value_that_refers_to_an_existent_post(String filtroConsulta) {
 		
 		System.out.println("---- User enters a value that refers to an existent post");
-		filtroConsulta = "Tecnologia";
+		this.filtroConsulta = filtroConsulta;
 		System.out.println("Valor inserido = " + filtroConsulta);
 		homepage.sendKeysBuscarTextBox(filtroConsulta);
 	}
 	
-	@When("^user enters a filter value that does not refers to an existent post$")
-	public void user_enters_a_filter_value_that_does_not_refers_to_an_existent_post() {
+	@When("^user enters a (.*) that does not refers to an existent post$")
+	public void user_enters_a_filter_value_that_does_not_refers_to_an_existent_post(String filtroConsulta) {
 		
 		System.out.println("---- User enters a filter value that does not refers to an existent post");
-		filtroConsulta = "aaaaaaaaaaaaaaaahhhhhhhhhhhhhhhh";
+		this.filtroConsulta = filtroConsulta;
 		System.out.println("Valor inserido = " + filtroConsulta);
 		homepage.sendKeysBuscarTextBox(filtroConsulta);
 	}

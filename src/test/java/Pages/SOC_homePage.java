@@ -4,10 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class SOC_homePage {
 	
 	WebDriver driver;
+	WebDriverWait wait;
 	
 	//WebElements Declaration
 	@FindBy(css = "input[type='text'][placeholder='Buscar']")
@@ -30,6 +33,7 @@ public class SOC_homePage {
 		BuscarButton.click();
 	}
 	public void clickOnLinkFAP() {
+		wait.until(ExpectedConditions.visibilityOf(FAPLink));
 		FAPLink.click();
 	}
 	public void clickOnSubmenuHear() {
@@ -39,6 +43,7 @@ public class SOC_homePage {
 	//Constructor
 	public SOC_homePage(WebDriver driver) {
 		this.driver = driver;
+		wait = new WebDriverWait(driver, 10000);
 		PageFactory.initElements(driver, this);
 	}
 }

@@ -21,9 +21,10 @@ public class BDDFapTest {
 	//Test variables
 	public String homePageURL = "https://ww2.soc.com.br/blog";
 	public String browser = "";
-	public String nomeEmpresa = "Insight Company Ltda";
-	public String valorFap = "0,5";
-	public String projecaoSalarial = "10.000.000,00";
+	public String nomeEmpresa;
+	public String valorFap;
+	public Integer valorRat;
+	public String projecaoSalarial;
 	
 	//Page Factories
 	WebDriver driver;
@@ -59,34 +60,43 @@ public class BDDFapTest {
 		fappage = new SOC_FAPPage(driver);
 	}
 	
-	@And("^user enters the company name$")
-	public void user_enters_the_company_name(){
+	@And("^user enters the company name (.*)$")
+	public void user_enters_the_company_name(String companyName){
 		
 		System.out.println("----- User enters the company name");
+		this.nomeEmpresa = companyName;
 		System.out.println("#### Company Name sent = " + nomeEmpresa);
 		fappage.sendCompanyName(nomeEmpresa);
 	}
 	
-	@And("^user enters a FAP value$")
-	public void user_enters_a_FAP_value(){
+	@And("^user enters a fap value (.*)$")
+	public void user_enters_a_FAP_value(String fapValue){
 		
 		System.out.println("----- User enters a FAP value");
+		this.valorFap = fapValue;
 		System.out.println("#### FAP value sent = " + valorFap);
 		fappage.sendFap(valorFap);
 	}
 
-	@And("^user enters a RAT percentage$")
-	public void user_enters_a_RAT_percentage(){
+	@And("^user enters a rat percentage (.*)$")
+	public void user_enters_a_RAT_percentage(String ratPercentage){
 		
 		System.out.println("----- User enters a RAT percentage");
+		this.valorRat = Integer.valueOf(ratPercentage);
 		fappage.clickRatButton();
-		fappage.clickRatOption3();
+		
+		switch(valorRat){
+			case 1: fappage.clickRatOption1(); break;
+			case 2: fappage.clickRatOption2(); break;
+			case 3: fappage.clickRatOption3(); break;
+		}
 	}
 
-	@And("^user enters a salary projection$")
-	public void user_enters_a_salary_projection(){
+	@And("^user enters a salary projection (.*)$")
+	public void user_enters_a_salary_projection(String salaryProjection){
 		
 		System.out.println("----- User enters a salary projection");
+		this.projecaoSalarial = salaryProjection;
 		System.out.println("#### Salary Projection sent = " + projecaoSalarial);
 		fappage.sendSalaryProjection(projecaoSalarial);
 	}
@@ -105,17 +115,24 @@ public class BDDFapTest {
 		System.out.println("#### Working on page = " + driver.getTitle());
 		reportpage = new SOC_FAPReportPage(driver);
 		
+		//Getting test assertion data
 		String nomeEmpresaRelatorio = reportpage.getNomeEmpresaText();
 		String projecaoSalarialRelatorio = reportpage.getProjecaoSalariaText();
 		String fapRelatorio = reportpage.getFapText();
 		String ratRelatorio = reportpage.getRatText();
 		
+		//adjusting data
+		projecaoSalarialRelatorio = projecaoSalarialRelatorio.replaceAll("[R$.,]", "").trim();
+		ratRelatorio = ratRelatorio.replace("%", "").trim();
+		
+		//Printing data on console
 		System.out.println("=== Dados Relatorio ===");
 		System.out.println("-> Nome Empresa = " + nomeEmpresaRelatorio);
 		System.out.println("-> Projecao Salaria = " + projecaoSalarialRelatorio);
 		System.out.println("-> FAP = " + fapRelatorio );
 		System.out.println("-> RAT = " + ratRelatorio);
 		
+		//Test Assertions
 		Assert.assertTrue("Nome da empresa no relatorio nao condiz com empresa utilizada", 
 									nomeEmpresa.equalsIgnoreCase(nomeEmpresaRelatorio));
 		Assert.assertTrue("Projeção salarial no relatório não condiz com projeção utilizada",
@@ -123,7 +140,7 @@ public class BDDFapTest {
 		Assert.assertTrue("FAP no relatorio nao condiz com FAP utilizado", 
 									valorFap.equalsIgnoreCase(fapRelatorio));
 		Assert.assertTrue("RAT no relatorio nao condiz com RAT utilizado",
-									ratRelatorio.equalsIgnoreCase("1"));
+									ratRelatorio.equalsIgnoreCase(valorRat.toString()));
 	}
 	
 	
