@@ -9,6 +9,6 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(	features="features/FAP.feature", 
 					plugin= {"json:target/cucumber-report/cucumber.json",}, 
 					glue="StepsImplementation")
-public class BuscaHomePageTestRunner {
+public class BuscaHomePageTest {
 
 }
