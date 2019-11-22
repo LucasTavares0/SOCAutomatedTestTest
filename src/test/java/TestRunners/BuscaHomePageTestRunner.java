@@ -6,7 +6,9 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features="features/BuscaHomePage.feature",glue="StepsImplementation")
+@CucumberOptions(	features="features/FAP.feature", 
+					plugin= {"json:target/cucumber-report/cucumber.json",}, 
+					glue="StepsImplementation")
 public class BuscaHomePageTestRunner {
 
 }

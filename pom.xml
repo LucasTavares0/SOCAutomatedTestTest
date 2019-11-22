@@ -3,7 +3,7 @@
   <groupId>br.com.SOCTest</groupId>
   <artifactId>SOCAutomatedTest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  
+
   <dependencies>
   
   		<!-- https://mvnrepository.com/artifact/junit/junit -->
@@ -60,4 +60,32 @@
  
   </dependencies>
   
+  <build>
+  		<plugins>
+  		
+		  	 <plugin>
+			    <groupId>com.trivago.rta</groupId>
+			    <artifactId>cluecumber-report-plugin</artifactId>
+			    <version>Check the version number above</version>
+			    <executions>
+			        <execution>
+			            <id>report</id>
+			            <phase>post-integration-test</phase>
+			            <goals>
+			                <goal>reporting</goal>
+			            </goals>
+			        </execution>
+			    </executions>
+			    <configuration>
+			    	<skip>false</skip>
+			        <sourceJsonReportDirectory>${project.build.directory}/cucumber-report</sourceJsonReportDirectory>
+			        <generatedHtmlReportDirectory>C:/TestReports/generated-report</generatedHtmlReportDirectory>
+			        <logLevel>default</logLevel>
+			    </configuration>    
+			</plugin>
+			
+  		</plugins>
+  </build>
+  
 </project>
+
