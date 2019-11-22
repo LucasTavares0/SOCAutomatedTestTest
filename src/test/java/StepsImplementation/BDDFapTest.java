@@ -22,9 +22,9 @@ public class BDDFapTest {
 	//Test variables
 	public String homePageURL = "https://ww2.soc.com.br/blog";
 	public String browser = "";
-	public String companyName = "Insight Company Ltda";
-	public String fapValue = "0,5";
-	public String salaryProjection = "10.000.000,00";
+	public String nomeEmpresa = "Insight Company Ltda";
+	public String valorFap = "0,5";
+	public String projecaoSalarial = "10.000.000,00";
 	
 	//Page Factories
 	WebDriver driver;
@@ -64,16 +64,16 @@ public class BDDFapTest {
 	public void user_enters_the_company_name(){
 		
 		System.out.println("----- User enters the company name");
-		System.out.println("#### Company Name sent = " + companyName);
-		fappage.sendCompanyName(companyName);
+		System.out.println("#### Company Name sent = " + nomeEmpresa);
+		fappage.sendCompanyName(nomeEmpresa);
 	}
 	
 	@And("^user enters a FAP value$")
 	public void user_enters_a_FAP_value(){
 		
 		System.out.println("----- User enters a FAP value");
-		System.out.println("#### FAP value sent = " + fapValue);
-		fappage.sendFap(fapValue);
+		System.out.println("#### FAP value sent = " + valorFap);
+		fappage.sendFap(valorFap);
 	}
 
 	@And("^user enters a RAT percentage$")
@@ -88,8 +88,8 @@ public class BDDFapTest {
 	public void user_enters_a_salary_projection(){
 		
 		System.out.println("----- User enters a salary projection");
-		System.out.println("#### Salary Projection sent = " + salaryProjection);
-		fappage.sendSalaryProjection(salaryProjection);
+		System.out.println("#### Salary Projection sent = " + projecaoSalarial);
+		fappage.sendSalaryProjection(projecaoSalarial);
 	}
 
 	@And("^user clicks on Estimar FAP button$")

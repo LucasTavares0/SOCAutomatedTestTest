@@ -20,8 +20,8 @@ public class BDDBuscaHomePage {
 	
 	//Test input variables
 	public String homePageURL = "https://ww2.soc.com.br/blog/";
-	public String searchFilter;
-	public String firstArticleTitle;
+	public String filtroConsulta;
+	public String tituloPrimeiroArtigo;
 	public String browser = "";
 	
 	WebDriver driver;
@@ -42,20 +42,18 @@ public class BDDBuscaHomePage {
 	public void user_enters_a_filter_value_that_refers_to_an_existent_post() {
 		
 		System.out.println("---- User enters a value that refers to an existent post");
-		
-		searchFilter = "Tecnologia";
-		System.out.println("Valor inserido = " + searchFilter);
-		homepage.sendKeysBuscarTextBox(searchFilter);
+		filtroConsulta = "Tecnologia";
+		System.out.println("Valor inserido = " + filtroConsulta);
+		homepage.sendKeysBuscarTextBox(filtroConsulta);
 	}
 	
 	@When("^user enters a filter value that does not refers to an existent post$")
 	public void user_enters_a_filter_value_that_does_not_refers_to_an_existent_post() {
 		
 		System.out.println("---- User enters a filter value that does not refers to an existent post");
-		
-		searchFilter = "aaaaaaaaaaaaaaaahhhhhhhhhhhhhhhh";
-		System.out.println("Valor inserido = " + searchFilter);
-		homepage.sendKeysBuscarTextBox(searchFilter);
+		filtroConsulta = "aaaaaaaaaaaaaaaahhhhhhhhhhhhhhhh";
+		System.out.println("Valor inserido = " + filtroConsulta);
+		homepage.sendKeysBuscarTextBox(filtroConsulta);
 	}
 	
 	@And("^user clicks on the search button$")
@@ -70,19 +68,17 @@ public class BDDBuscaHomePage {
 		
 		System.out.println("---- User select a content result");
 		resultadospage = new SOC_ResultadosBuscaPage(driver);
-		
 		String messageReceived = resultadospage.getResultadoDaBuscaText();
 		System.out.println("Mensagem de alerta recebida = "+ messageReceived);
-		Assert.assertTrue(messageReceived.contains("RESULTADO DA SUA BUSCA NO BLOG: "+ searchFilter.toUpperCase()));
+		Assert.assertTrue(messageReceived.contains("RESULTADO DA SUA BUSCA NO BLOG: "+ filtroConsulta.toUpperCase()));
 	}
 	
 	@And("^user clicks on the content result selected$")
 	public void user_clicks_on_the_content_result_selected() {
 		
 		System.out.println("---- User clicks on the content result selected");
-		
-		firstArticleTitle = resultadospage.getFirstArticleText();	
-		System.out.println("Clicando no primeiro artigo da lista: " + firstArticleTitle);
+		tituloPrimeiroArtigo = resultadospage.getFirstArticleText();	
+		System.out.println("Clicando no primeiro artigo da lista: " + tituloPrimeiroArtigo);
 		resultadospage.clickOnFirstArticleLink();
 	}
 	
@@ -99,9 +95,9 @@ public class BDDBuscaHomePage {
 		//System.out.println("Conteudo do Artigo = "+ articleContentReceived);
 		
 		Assert.assertTrue("Titulo do artigo nao condiz com o titulo do post selecionado",
-							postTitleReceived.equalsIgnoreCase(firstArticleTitle));
+							postTitleReceived.equalsIgnoreCase(tituloPrimeiroArtigo));
 		Assert.assertTrue("Conteundo do artigo nao contem palavra filtro usada na pesquisa", 
-							articleContentReceived.toLowerCase().contains(searchFilter.toLowerCase()));
+							articleContentReceived.toLowerCase().contains(filtroConsulta.toLowerCase()));
 	}
 	
 	@Then("^user receives erro message informing that no post refers to the filter used$")
@@ -114,7 +110,7 @@ public class BDDBuscaHomePage {
 		String erroMessage = resultadospage.getMensagemDeErroText();
 		
 		System.out.println("Mensagem de alerta recebida = "+ messageReceived);
-		Assert.assertTrue(messageReceived.contains("RESULTADO DA SUA BUSCA NO BLOG: "+ searchFilter.toUpperCase()));
+		Assert.assertTrue(messageReceived.contains("RESULTADO DA SUA BUSCA NO BLOG: "+ filtroConsulta.toUpperCase()));
 		System.out.println("Mensagem de erro recebida = " + erroMessage);
 		Assert.assertTrue(erroMessage.contains("Nenhum post encontrado. Tente uma busca diferente"));
 	}

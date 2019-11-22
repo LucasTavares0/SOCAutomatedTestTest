@@ -11,17 +11,17 @@ public class SOC_PostDetailsPage {
 	
 	//WebElements Declaration
 	@FindBy(xpath = "//*[@id=\"content\"]/article[1]/h1")
-	WebElement postTitle;
+	WebElement tituloPost;
 	
 	@FindBy(xpath = "//*[@id=\"content\"]/article[1]")
-	WebElement articleBody;
+	WebElement corpoArtigo;
 	
 	//Action Methods
 	public String getPostTitle() {
-		return postTitle.getText();
+		return tituloPost.getText();
 	}
 	public String getArticleContentText() {
-		return articleBody.getText();
+		return corpoArtigo.getText();
 	}
 	//Constructor
 	public SOC_PostDetailsPage(WebDriver driver) {

@@ -14,7 +14,7 @@ public class SOC_FAPPage {
 	
 	//WebElements Declaration
 	@FindBy(id = "nomeEmpresa")
-	WebElement companyNameTextBox;
+	WebElement nomeEmpresaTextBox;
 	
 	@FindBy(id = "fap")
 	WebElement fapTextBox;
@@ -32,7 +32,7 @@ public class SOC_FAPPage {
 	WebElement ratOption3;
 	
 	@FindBy(id = "projecao")
-	WebElement salaryProjectionTextBox;
+	WebElement projecaoSalarialTextBox;
 	
 	@FindBy(id = "estimar")
 	WebElement estimarFapButton;
@@ -40,7 +40,7 @@ public class SOC_FAPPage {
 
 	//Action Methods
 	public void sendCompanyName(String companyName) {
-		companyNameTextBox.sendKeys(companyName);
+		nomeEmpresaTextBox.sendKeys(companyName);
 	}
 	public void sendFap(String fapValue) {
 		fapTextBox.sendKeys(fapValue);
@@ -61,23 +61,23 @@ public class SOC_FAPPage {
 		ratOption3.click();
 	}
 	public void sendSalaryProjection(String salaryProjection) {
-		salaryProjectionTextBox.sendKeys(salaryProjection);
+		projecaoSalarialTextBox.sendKeys(salaryProjection);
 	}
 	public void clickEstimarFapButton() {
 		estimarFapButton.click();
 	}
 	
 	//Group Actions
-	public void estimarFapCompleto(String companyName, String fapValue, int ratOption, String salaryProjection) {
-		companyNameTextBox.sendKeys(companyName);
-		fapTextBox.sendKeys(fapValue);
+	public void estimarFapCompleto(String nomeEmpresa, String valorFap, int ratOption, String projecaoSalarial) {
+		nomeEmpresaTextBox.sendKeys(nomeEmpresa);
+		fapTextBox.sendKeys(valorFap);
 		ratButton.click();
 
 		switch(ratOption){
-			case 1: ratOption1.click(); break;
-			case 2: ratOption2.click(); break;
-			case 3: ratOption3.click(); break;
-			default: ratOption1.click(); break;
+			case 1: wait.until(ExpectedConditions.visibilityOf(ratOption1)); ratOption1.click(); break;
+			case 2: wait.until(ExpectedConditions.visibilityOf(ratOption2)); ratOption2.click(); break;
+			case 3: wait.until(ExpectedConditions.visibilityOf(ratOption3)); ratOption3.click(); break;
+			default: wait.until(ExpectedConditions.visibilityOf(ratOption1)); ratOption1.click(); break;
 		}
 		estimarFapButton.click();
 	}
