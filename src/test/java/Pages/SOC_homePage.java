@@ -19,6 +19,9 @@ public class SOC_homePage {
 	@FindBy(css = "a[href='/fap']")
 	WebElement FAPLink;
 	
+	@FindBy(className = "mostra-submenu")
+	WebElement subMenuHeader;
+	
 	//Action Methods
 	public void sendKeysBuscarTextBox(String searchFilter) {
 		BuscarTextBox.sendKeys(searchFilter);
@@ -28,6 +31,9 @@ public class SOC_homePage {
 	}
 	public void clickOnLinkFAP() {
 		FAPLink.click();
+	}
+	public void clickOnSubmenuHear() {
+		subMenuHeader.click();
 	}
 	
 	//Constructor
