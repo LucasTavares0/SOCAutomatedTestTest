@@ -33,7 +33,8 @@ public class BDDBuscaHomePage {
 	@Given("^user is on the blog home page$")
 	public void user_is_on_the_blog_home_page(){
 		
-		System.out.println("---- User is on the SOC Blog HomePage");		
+		System.out.println("---- User is on the SOC Blog HomePage");
+		driver.get(homePageURL);
 		homepage = new SOC_homePage(driver);
 	}
 	
@@ -124,7 +125,6 @@ public class BDDBuscaHomePage {
 		System.out.println("**** STATING TEST AND OPENNING BROWSER...");
 		driver = factory.openBrowser(browser);
 		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
-		driver.get(homePageURL);
 	}
 	
 	@After
