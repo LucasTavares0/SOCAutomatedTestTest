@@ -24,12 +24,17 @@ public class BDDBuscaHomePage {
 	public String tituloPrimeiroArtigo;
 	public String browser = "";
 	
-	WebDriver driver;
-	DriverFactory factory = new DriverFactory();
+	//Page Factories
 	SOC_homePage homepage;
 	SOC_ResultadosBuscaPage resultadospage;
 	SOC_PostDetailsPage postpage;
 	
+	//Resources
+	WebDriver driver;
+	DriverFactory factory = new DriverFactory();
+	
+	
+	//Test steps implementation
 	@Given("^user is on the blog home page$")
 	public void user_is_on_the_blog_home_page(){
 		
@@ -120,7 +125,7 @@ public class BDDBuscaHomePage {
 		
 		System.out.println("**** STATING TEST AND OPENNING BROWSER...");
 		driver = factory.openBrowser(browser);
-		driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+		driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
 	}
 	
 	@After

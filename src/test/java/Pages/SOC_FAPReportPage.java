@@ -13,43 +13,43 @@ public class SOC_FAPReportPage {
 	@FindBy(xpath = "//*[@id=\"page\"]/section/div/header/h1")
 	WebElement tituloRelatorioLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[1]/table/tbody/tr/td[1]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[1]/table/tbody/tr/td[1]")
 	WebElement nomeEmpresaLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[1]/table/tbody/tr/td[2]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[1]/table/tbody/tr/td[2]")
 	WebElement projecaoSalarialLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[1]/table/tbody/tr/td[3]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[1]/table/tbody/tr/td[3]")
 	WebElement ratLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[1]/table/tbody/tr/td[4]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[1]/table/tbody/tr/td[4]")
 	WebElement fapLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[2]/table/tbody/tr[1]/td[3]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[2]/table/tbody/tr[1]/td[3]")
 	WebElement recolhimentoRatProjetadoLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[2]/table/tbody/tr[2]/td[3]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[2]/table/tbody/tr[2]/td[3]")
 	WebElement recolhimentRatAjustadoProjetadoLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[2]/table/tbody/tr[3]/td[2]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[2]/table/tbody/tr[3]/td[2]")
 	WebElement impactoAnualProjetadoLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[3]/table/tbody/tr[1]/td[3]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[3]/table/tbody/tr[1]/td[3]")
 	WebElement recolhimentoRatAlcancarLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[3]/table/tbody/tr[2]/td[3]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[3]/table/tbody/tr[2]/td[3]")
 	WebElement recolhimentRatAjustadoAlcancarLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[3]/table/tbody/tr[3]/td[2]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[3]/table/tbody/tr[3]/td[2]")
 	WebElement impactoAnualAlcancarLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[4]/table/tbody/tr/td[1]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[4]/table/tbody/tr/td[1]")
 	WebElement recolhimentoMinimoLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[4]/table/tbody/tr/td[2]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[4]/table/tbody/tr/td[2]")
 	WebElement recolhimentoMaximoLabel;
 	
-	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[4]/table/tbody/tr/td[3]/span")
+	@FindBy(xpath = "//*[@id=\"page\"]/section/div/article[4]/table/tbody/tr/td[3]")
 	WebElement recolhimentoPassivelEconomiaLabel;
 	
 	

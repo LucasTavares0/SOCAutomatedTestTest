@@ -2,9 +2,8 @@ package StepsImplementation;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Pages.SOC_FAPPage;
 import Pages.SOC_FAPReportPage;
@@ -103,8 +102,29 @@ public class BDDFapTest {
 	public void user_receive_a_FAP_calculation_report (){
 		
 		System.out.println("----- User receive a FAP calculation report");
+		System.out.println("#### Working on page = " + driver.getTitle());
+		reportpage = new SOC_FAPReportPage(driver);
+		
+		String nomeEmpresaRelatorio = reportpage.getNomeEmpresaText();
+		String projecaoSalarialRelatorio = reportpage.getProjecaoSalariaText();
+		String fapRelatorio = reportpage.getFapText();
+		String ratRelatorio = reportpage.getRatText();
+		
+		System.out.println("=== Dados Relatorio ===");
+		System.out.println("-> Nome Empresa = " + nomeEmpresaRelatorio);
+		System.out.println("-> Projecao Salaria = " + projecaoSalarialRelatorio);
+		System.out.println("-> FAP = " + fapRelatorio );
+		System.out.println("-> RAT = " + ratRelatorio);
+		
+		Assert.assertTrue("Nome da empresa no relatorio nao condiz com empresa utilizada", 
+									nomeEmpresa.equalsIgnoreCase(nomeEmpresaRelatorio));
+		Assert.assertTrue("Projeção salarial no relatório não condiz com projeção utilizada",
+									projecaoSalarial.equalsIgnoreCase(projecaoSalarialRelatorio));
+		Assert.assertTrue("FAP no relatorio nao condiz com FAP utilizado", 
+									valorFap.equalsIgnoreCase(fapRelatorio));
+		Assert.assertTrue("RAT no relatorio nao condiz com RAT utilizado",
+									ratRelatorio.equalsIgnoreCase("1"));
 	}
-	
 	
 	
 	@Before
@@ -119,6 +139,6 @@ public class BDDFapTest {
 	public void tearDown() {
 		
 		System.out.println("**** FINISHING TEST AND CLOSING BROWSER...");
-		//driver.quit();
+		driver.quit();
 	}
 }
